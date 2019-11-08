@@ -10,12 +10,11 @@
     ini_set('display_errors', 'on');
     if(isset($_POST['submit'])){
       require('MySql.php');
-      $stmt = $mysql->prepare("SELECT * FROM t_login WHERE Benutzername = \':user\' AND Passwort = \':password\'"); //Username überprüfen
+      $stmt = $mysql->prepare("SELECT * FROM T_login WHERE Benutzername = \':user\'"); //Username überprüfen
       $stmt->bindParam(":user", $_POST["username"]);
-      $stmt->bindParam(":password", $_POST["pw"]);
+      //$stmt->bindParam(":password", $_POST["pw"]);
       $stmt->execute();
       $count = $stmt->rowCount();
-      echo $stmt;
       if($count == 1){
         header("Location: /test.html");
       } else {
