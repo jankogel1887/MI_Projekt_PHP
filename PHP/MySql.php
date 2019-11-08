@@ -1,6 +1,6 @@
 <?php
-$host = "remotemysql.com:3306/teBkBlukHH";
-$name = "test";
+$host = "remotemysql.com:3306/";
+$name = "teBkBlukHH";
 $user = "teBkBlukHH";
 $passwort = "73jEmTvhoK";
 try{
