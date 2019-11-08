@@ -10,28 +10,21 @@
     ini_set('display_errors', 'on');
     if(isset($_POST['submit'])){
       require('MySql.php');
-      $stmt = $mysql->prepare("SELECT * FROM t_login WHERE Benutzername = :user AND Passwort = :password"); //Username überprüfen
+      $stmt = $mysql->prepare("SELECT * FROM t_login WHERE Benutzername = \':user\' AND Passwort = \':password\'"); //Username überprüfen
       $stmt->bindParam(":user", $_POST["username"]);
       $stmt->bindParam(":password", $_POST["pw"]);
       $stmt->execute();
       $count = $stmt->rowCount();
+      echo $stmt;
       if($count == 1){
-        //Username ist frei
-        $row = $stmt->fetch();
-        if(password_verify($_POST["pw"], $row["PASSWORD"])){
-          session_start();
-          $_SESSION["username"] = $row["USERNAME"];
-          header("Location: geheim.php");
-        } else {
-          echo "Der Login ist fehlgeschlagen";
-        }
+        header("Location: /test.html");
       } else {
-        echo "Der Login ist fehlgeschlagen";
+        //echo "Der Login ist fehlgeschlagen";
       }
     }
      ?>
     <h1>Anmelden</h1>
-    <form action="index.php" method="post">
+    <form action="login.php" method="post">
       <input type="text" name="username" placeholder="Username" required><br>
       <input type="password" name="pw" placeholder="Passwort" required><br>
       <button type="submit" name="submit">Einloggen</button>
