@@ -10,20 +10,15 @@
     ini_set('display_errors', 'on');
     if(isset($_POST['submit'])){
       require('MySql.php');
-<<<<<<< HEAD
       $stmt = $mysql->prepare("SELECT * FROM T_login WHERE Benutzername = \':user\'"); //Username überprüfen
-=======
 
       $stmt = $mysql-> prepare('SELECT * FROM t_login WHERE Benutzername = :user'); //Username überprüfen
->>>>>>> master
       $stmt->bindParam(":user", $_POST["username"]);
       //$stmt->bindParam(":password", $_POST["pw"]);
       $stmt->execute();
       $count = $stmt->rowCount();
-<<<<<<< HEAD
       if($count == 1){
         header("Location: /test.html");
-=======
       if($count == 0){
         //Username ist frei
 
@@ -38,8 +33,6 @@
           } else {
             echo "Die Passwörter stimmen nicht überein";
           }
-
->>>>>>> master
       } else {
         //echo "Der Login ist fehlgeschlagen";
       }
