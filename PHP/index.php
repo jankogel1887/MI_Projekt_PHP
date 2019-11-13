@@ -10,22 +10,23 @@
     ini_set('display_errors', 'on');
     if(isset($_POST['submit'])){
       require('MySql.php');
-      $stmt = $mysql->prepare("SELECT * FROM T_login WHERE Benutzername= :user"); //Username überprüfen
+      $stmt = $mysql->prepare("SELECT * FROM t_login WHERE Benutzername = :user"); //Username überprüfen
       $stmt->bindParam(":user", $_POST["username"]);
       $stmt->execute();
       $count = $stmt->rowCount();
       if($count == 1){
         //Username ist frei
         $row = $stmt->fetch();
-        if(password_verify($_POST["pw"], $row["Passwort"])){
+        echo $_POST["pw"];
+        if($_POST["pw"] == $row["Passwort"]){
           session_start();
-          $_SESSION["username"] = $row["USERNAME"];
-          header("Location: test.html");
+          $_SESSION["username"] = $row["Benutzername"];
+          header("Location: geheim.php");
         } else {
-          echo "Der Login ist fehlgeschlagen";
+          echo "Das Passwort ist falsch";
         }
       } else {
-        echo "Der Login ist fehlgeschlagen";
+        echo "Kein Ergebnis gefunden";
       }
     }
      ?>
