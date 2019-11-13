@@ -11,23 +11,20 @@
     if(isset($_POST['submit'])){
       require('MySql.php');
       $stmt = $mysql->prepare("SELECT * FROM T_login WHERE Benutzername = \':user\'"); //Username überprüfen
-
-      $stmt = $mysql-> prepare('SELECT * FROM t_login WHERE Benutzername = :user'); //Username überprüfen
       $stmt->bindParam(":user", $_POST["username"]);
       //$stmt->bindParam(":password", $_POST["pw"]);
       $stmt->execute();
       $count = $stmt->rowCount();
       if($count == 1){
         header("Location: /test.html");
+      }
       if($count == 0){
         //Username ist frei
 
           if($_POST["pw"] == $_POST["pw2"]){
             //User anlegen
-            $stmt = $mysql->prepare("INSERT INTO accounts (Benutzername, Passwort_BCRYPT) VALUES (:user, :pw)");
+            $stmt = $mysql->prepare("TODO");
             $stmt->bindParam(":user", $_POST["username"]);
-            $hash = password_hash($_POST["pw"], Passwort_BCRYPT);
-            $stmt->bindParam(":pw", $hash);
             $stmt->execute();
             echo "Dein Account wurde angelegt";
           } else {
@@ -36,7 +33,6 @@
       } else {
         //echo "Der Login ist fehlgeschlagen";
       }
-    }
      ?>
     <h1>Anmelden</h1>
     <form action="login.php" method="post">
