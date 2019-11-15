@@ -19,7 +19,6 @@
       if($count == 1){
         //Username ist frei
         $row = $stmt->fetch(); //Passwort ueberpruefung
-        echo $_POST["pw"];
         if($_POST["pw"] == $row["Passwort"]){
           session_start();
           $_SESSION["username"] = $row["Benutzername"];

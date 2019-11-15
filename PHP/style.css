@@ -1,0 +1,119 @@
+body {margin: 0px;}
+
+#head {
+
+  background-color: #ff751f;
+  height: 250px;
+  color: red;
+}
+#head a{
+
+}
+#head li {
+  position:absolute;
+  top: 10px;
+  display: inline-block;
+  left: 25%;
+  color: white;
+  font-family: Verdana;
+  font-size: 60px;
+  text-decoration: none;
+  list-style: none;
+  color: red;
+  text-shadow; 2px 2px;
+
+}
+.linien{
+  border-left: 5px solid black;
+  height: 105px;
+  position: absolute;
+  left: 20%;
+  margin-left: -3px;
+  top: 0;
+
+}
+hr {
+    width: 100%;
+    height: 4px;
+    margin: 0 auto;
+    background: black;
+}
+#reiter li{
+  width: 634px;
+  display: inline-block;
+  float: left;
+  font-size: 24px;
+  text-align: center;
+  color: #2c3e50;
+}
+#reiter li:hover{
+  background-color:gray ;
+  color:#A52A2A;
+  font-size: 32px;
+  letter-spacing: 2px;
+  text-decoration:underline;
+  text-decoration-color: black;
+  border-bottom: solid 5px black;
+  height: 40px;
+}
+#arzt{
+  display: inline-block;
+  border-bottom: solid black;
+  height: 32px;
+  border-right: solid black;
+  border-left: solid black;
+}
+#patient{
+  display: inline-block;
+  border-bottom: solid black;
+  height: 32px;
+  border-right: solid black;
+   border-left: solid black;
+}
+#impfung{
+  display: inline-block;
+  border-bottom: solid black;
+  border-right: solid black;
+   border-left: solid black;
+  height: 32px;
+}
+.search {
+  width: 100%;
+  display: flex;
+}
+
+.searchTerm {
+
+  width: 100%;
+  border: 3px solid black;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: black;
+}
+
+.searchTerm:focus{
+  color: black;
+}
+
+.searchButton {
+  width: 90px;
+  height: 36px;
+  border: 1px solid black;
+  background: black;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
