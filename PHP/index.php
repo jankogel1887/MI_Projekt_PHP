@@ -6,6 +6,9 @@
     <title>Login</title>
   </head>
   <body class="body">
+
+
+
     <?php
     error_reporting(E_ALL); //anzeigen von Fehlern
     ini_set('display_errors', 'on');
@@ -26,10 +29,10 @@
           if (strpos($row["Benutzername"], 'A_') === 0) {  //Unterscheidung zwischen Arzt und Patient
             header("Location: aerzte.php");
           }elseif (strpos($row["Benutzername"], 'P_') === 0) {
-            header("Location: patient.php");
-        }else {
-          echo "Benutzername oder Passwort ist falsch";
-        }
+            header("Location: patienten.php");
+          }else {
+            echo "Benutzername oder Passwort ist falsch";
+          }
 
 
         } else {
@@ -40,6 +43,9 @@
       }
     }
      ?>
+
+
+
     <h1>Anmelden</h1>
     <form action="index.php" method="post">
       <input type="text" name="username" placeholder="Username" required><br>
