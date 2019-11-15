@@ -47,7 +47,7 @@
   ini_set('display_errors', 'on');
   if(isset($_POST['submitsearch'])){
     require('MySql.php');
-    $stmt = $mysql->prepare("SELECT * FROM t_aerzte WHERE aname = :search2 OR avorname = :search2 OR aplz = :search2 OR aid = :search2 OR aort = :search2 OR aid = :search2");
+    $stmt = $mysql->prepare("SELECT * FROM t_aerzte WHERE aname = :search2 OR avorname = :search2 OR afachgebiet = :search2 OR aplz = :search2 OR aid = :search2 OR aort = :search2 OR aid = :search2");
     $stmt->bindParam(":search2", $_POST["searchfield"]);
     $stmt->execute();
     //https://stackoverflow.com/questions/15251095/display-data-from-sql-database-into-php-html-table
