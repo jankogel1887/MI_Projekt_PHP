@@ -49,22 +49,42 @@
   ini_set('display_errors', 'on');
   if(isset($_POST['submitsearch'])){
     require('MySql.php');
-    //$stmt = $mysql->prepare("SELECT * FROM T_Patienten WHERE pname = \':name\' OR pvorname = \':name\'");
-    $stmt = $mysql->prepare("SELECT * FROM t_patienten WHERE pname = \':name\'");
-    //$stmt = $mysql->prepare("SELECT * FROM t_patienten where pid = 5001");
-    $stmt->bindParam(":name", $_POST["searchfield"]);
+    $stmt = $mysql->prepare("SELECT * FROM t_patienten WHERE pname = :search OR pvorname = :search OR pplz = :search OR pstrasse = :search OR port = :search OR pid = :search");
+    $stmt->bindParam(":search", $_POST["searchfield"]);
     $stmt->execute();
 
 
-    //https://stackoverflow.com/questions/15251095/display-data-from-sql-database-into-php-html-table
-    echo "<h2>Results: </h2>";
-    $users = $stmt->fetchAll();
-    echo "<table>";
-    foreach ($users as $row) {
-      echo "<tr><td>" . $row['pname'] . "</td><td>" . $row['pvorname'] . "</td></tr>";
-    }
-    echo "</table>"; //Close the table in HTML
+    $stmt2 = $mysql->prepare("SELECT * FROM t_aerzte WHERE aname = :search2 OR avorname = :search2 OR aplz = :search2 OR aid = :search2 OR aort = :search2 OR aid = :search2");
+    $stmt2->bindParam(":search2", $_POST["searchfield"]);
+    $stmt2->execute();
 
+    //https://stackoverflow.com/questions/15251095/display-data-from-sql-database-into-php-html-table
+    echo "<h2>Ergebnisse: </h2>";
+    $users = $stmt->fetchAll();
+    $users2 = $stmt2->fetchAll();
+
+    if(count($users) >= 1) {
+      echo "<h3>Patienten</h3>";
+      echo "<table>";
+      echo "<tr><td>ID</td><td>Nachname</td><td>Vorname</td><td>Geb. Datum</td><td>Strasse</td><td>PLZ</td><td>Ort</td></tr>";
+      foreach ($users as $row) {
+        echo "<tr><td>" . $row['pid'] . "</td><td>" . $row['pname'] . "</td><td>" . $row['pvorname'] . "</td><td>" . $row['pgebdat'] . "</td><td>" . $row['pstrasse'] . "</td><td>" . $row['pplz'] . "</td><td>" . $row['port'] . "</td></tr>";
+      }
+      echo "</table>";
+    }
+    echo "<br>";
+
+    // aid, aname, avorname, afachgebiet, astrasse, aplz, aort
+    // pid, pname, pvorname, pgebdat, pstrasse, pplz, port
+    if(count($users2) >= 1) {
+      echo "<h3>Ärzte</h3>";
+      echo "<table>";
+      echo "<tr><td>ID</td><td>Nachname</td><td>Vorname</td><td>Fachgebiet</td><td>Strasse</td><td>PLZ</td><td>Ort</td></tr>";
+      foreach ($users2 as $row) {
+        echo "<tr><td>" . $row['aid'] . "</td><td>" . $row['aname'] . "</td><td>" . $row['avorname'] . "</td><td>" . $row['afachgebiet'] . "</td><td>" . $row['astrasse'] . "</td><td>" . $row['aplz'] . "</td><td>" . $row['aort'] . "</td></tr>";
+      }
+      echo "</table>";
+    }
 
   }
   ?>
