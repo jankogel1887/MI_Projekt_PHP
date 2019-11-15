@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <link rel="stylesheet" href="Startseite-design.css" type="text/css">
     <meta charset="utf-8">
     <title>Login</title>
   </head>
-  <body>
+  <body class="body">
     <?php
-    error_reporting(E_ALL);
+    error_reporting(E_ALL); //anzeigen von Fehlern
     ini_set('display_errors', 'on');
+
     if(isset($_POST['submit'])){
       require('MySql.php');
-      $stmt = $mysql->prepare("SELECT * FROM t_login WHERE Benutzername = :user"); //Username überprüfen
+      $stmt = $mysql->prepare("SELECT * FROM t_login WHERE Benutzername = :user"); //Username ueberpruefen
       $stmt->bindParam(":user", $_POST["username"]);
       $stmt->execute();
       $count = $stmt->rowCount();
       if($count == 1){
         //Username ist frei
-        $row = $stmt->fetch();
+        $row = $stmt->fetch(); //Passwort ueberpruefung
         echo $_POST["pw"];
         if($_POST["pw"] == $row["Passwort"]){
           session_start();
           $_SESSION["username"] = $row["Benutzername"];
-          header("Location: geheim.php");
+
+          if (strpos($row["Benutzername"], 'A_') === 0) {  //Unterscheidung zwischen Arzt und Patient
+            header("Location: aerzte.php");
+          }elseif (strpos($row["Benutzername"], 'P_') === 0) {
+            header("Location: patient.php");
+        }else {
+          echo "Benutzername oder Passwort ist falsch";
+        }
+
+
         } else {
           echo "Das Passwort ist falsch";
         }
@@ -37,6 +48,6 @@
       <button type="submit" name="submit">Einloggen</button>
     </form>
     <br>
-    <a href="register.php">Noch keinen Account?</a><br>
+
   </body>
 </html>
