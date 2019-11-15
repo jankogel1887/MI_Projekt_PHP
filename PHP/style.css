@@ -5,25 +5,28 @@ body {margin: 0px;}
   background-color: #ff751f;
   height: 250px;
   color: red;
+  border: solid 3px black ;
 }
-#head a{
+#button{
+  display: inline-block;
+  position: absolute;
+  right: 10%;
+  top:10%;
 
 }
 #head li {
-  position:absolute;
-  top: 10px;
+  top: 1px;
   display: inline-block;
-  left: 25%;
+  text-align: center;
   color: white;
   font-family: Verdana;
-  font-size: 60px;
+  font-size: 24px;
   text-decoration: none;
-  list-style: none;
-  color: red;
-  text-shadow; 2px 2px;
+  list-style: none;;
+
 
 }
-.linien{
+/*.linien{
   border-left: 5px solid black;
   height: 105px;
   position: absolute;
@@ -38,6 +41,7 @@ hr {
     margin: 0 auto;
     background: black;
 }
+*/
 #reiter li{
   width: 634px;
   display: inline-block;
@@ -45,6 +49,7 @@ hr {
   font-size: 24px;
   text-align: center;
   color: #2c3e50;
+  border-top: solid 1px black;
 }
 #reiter li:hover{
   background-color:gray ;
@@ -55,6 +60,9 @@ hr {
   text-decoration-color: black;
   border-bottom: solid 5px black;
   height: 40px;
+}
+table, th, td {
+	border: 1px solid black;
 }
 #arzt{
   display: inline-block;
@@ -76,6 +84,10 @@ hr {
   border-right: solid black;
    border-left: solid black;
   height: 32px;
+}
+#text{
+	text-align: center;
+	align: center;
 }
 .search {
   width: 100%;
@@ -113,7 +125,38 @@ hr {
 .wrap{
   width: 30%;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.knopf{
+	position: absolute;
+	top:125px;
+	right:100px;
+	width:100px;
+	height: 50px;
+}
+h3{
+	text-align: center;
+	font-size: 40px;
+	height: 50px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+#trTop {
+  background-color: lightgreen;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+  background-color: black;
+  color: white;
 }
